@@ -1,9 +1,29 @@
-<h1>Welcome to UMS</h1>
-<nav>
-  <ul>
-    <li><a routerLink="/student" routerLinkActive="active">Student</a></li>
-    <li><a routerLink="/university" routerLinkActive="active">University</a></li>
-  </ul>
-</nav>
+<div class="container">
+  <header>
+    <h1>{{ 'HOME.WELCOME' | translate }}</h1>
+    <p>{{ 'HOME.CLICK_HERE' | translate }}</p>
+    
+    <div class="language-switcher">
+      <label for="language">{{ 'HOME.SELECT_LANGUAGE' | translate }}</label>
+      <select id="language" (change)="changeLanguage($event)">
+        <option value="en" [selected]="selectedLanguage() === 'en'">English</option>
+        <option value="fr" [selected]="selectedLanguage() === 'fr'">Français</option>
+      </select>
+    </div>
+  </header>
 
-<router-outlet>
+  <nav>
+    <ul class="nav-links">
+      <li>
+        <a routerLink="/student" routerLinkActive="active">{{ 'HOME.STUDENT' | translate }}</a>
+      </li>
+      <li>
+        <a routerLink="/university" routerLinkActive="active">{{ 'HOME.UNIVERSITY' | translate }}</a>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>

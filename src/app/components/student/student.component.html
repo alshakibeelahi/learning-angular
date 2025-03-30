@@ -1,1 +1,22 @@
-<p>student works!</p>
+<div class="container">
+  <h2>{{ 'STUDENT.TITLE' | translate }}</h2>
+
+  <form [formGroup]="studentForm" (ngSubmit)="addStudent()">
+    <div class="form-group" *ngFor="let field of ['name', 'age', 'email', 'phone', 'address', 'city', 'state', 'zip', 'country']">
+      <label [for]="field">{{ ('STUDENT.' + field.toUpperCase()) | translate }}</label>
+      <input [type]="field === 'age' ? 'number' : 'text'" [id]="field" formControlName="{{ field }}">
+      <span class="error" *ngIf="studentForm.get(field)?.invalid && studentForm.get(field)?.touched">
+        {{ ('STUDENT.' + field.toUpperCase() + '_ERROR') | translate }}
+      </span>
+    </div>
+
+    <button type="submit" [disabled]="studentForm.invalid">{{ 'STUDENT.SUBMIT' | translate }}</button>
+  </form>
+
+  <h3>{{ 'STUDENT.LIST_TITLE' | translate }}</h3>
+  <ul>
+    <li *ngFor="let student of students()">
+      <strong>{{ student.name }}</strong> ({{ student.age }} years old) - {{ student.email }}
+    </li>
+  </ul>
+</div>

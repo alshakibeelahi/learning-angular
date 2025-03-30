@@ -1,0 +1,21 @@
+{
+  "HOME": {
+    "WELCOME": "Welcome to our website",
+    "CLICK_HERE": "Click here to learn more!",
+    "SELECT_LANGUAGE": "Select Language",
+    "STUDENT": "Student",
+    "UNIVERSITY": "University"
+  },
+  "STUDENT":{
+    "TITLE":"Student",
+    "NAME":"Name",
+    "AGE":"Age",
+    "EMAIL":"Email",
+    "PHONE":"Phone",
+    "ADDRESS":"Address",
+    "CITY":"City",
+    "STATE":"State",
+    "ZIP":"Zip Code",
+    "COUNTRY":"Country"
+  }
+}
