@@ -4,7 +4,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { StudentService } from '../../services/student.service';
+import { CourseService } from '../../services/course.service';  // Add course service
 import { Student } from '../../models/student.model';
+import { Course } from '../../models/course.model';  // Assuming you have a Course model
 
 @Component({
   selector: 'app-student',
@@ -16,41 +18,43 @@ import { Student } from '../../models/student.model';
 export class StudentComponent {
   studentForm: FormGroup;
 
-  // Use Signal for Students Data (Optimized)
   private studentsSignal = signal<Student[]>([]);
-
-  // Extract the array directly for *ngFor
   students = computed(() => this.studentsSignal());
+  private coursesSignal = signal<Course[]>([]);
+  courses = computed(() => this.coursesSignal());
 
-  constructor(private fb: FormBuilder, private studentService: StudentService) {
+  constructor(
+    private fb: FormBuilder,
+    private studentService: StudentService,
+    private courseService: CourseService // Inject the course service
+  ) {
     this.studentForm = this.fb.group({
       name: ['', Validators.required],
       age: ['', [Validators.required, Validators.min(1)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
-      address: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      zip: ['', Validators.required],
-      country: ['', Validators.required],
+      course: ['', Validators.required],  // Add course field
     });
 
-    // Load students initially
+    // Load students and courses
     this.loadStudents();
+    this.loadCourses();
   }
 
-  // Load Students from Service and Update Signal
   loadStudents() {
     this.studentsSignal.set(this.studentService.getStudents());
   }
 
-  // Add Student and Update Signal
+  loadCourses() {
+    this.coursesSignal.set(this.courseService.getCourses());  // Assuming you have a course service
+  }
+
   addStudent() {
     if (this.studentForm.valid) {
       const newStudent = this.studentForm.value as Student;
+      console.log(newStudent);  // Log the new student object
       this.studentService.addStudent(newStudent);
 
-      // Update Signal with new list
       this.studentsSignal.set([...this.studentsSignal(), newStudent]);
 
       this.studentForm.reset();

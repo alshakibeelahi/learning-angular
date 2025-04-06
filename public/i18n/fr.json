@@ -4,7 +4,7 @@
     "CLICK_HERE": "Cliquez ici pour en savoir plus !",
     "SELECT_LANGUAGE": "Sélectionner la langue",
     "STUDENT": "Étudiant",
-    "UNIVERSITY": "Université"
+    "UNIVERSITY": "Course"
   },
   "STUDENT": {
     "TITLE": "Étudiant",
@@ -12,10 +12,24 @@
     "AGE": "Âge",
     "EMAIL": "Email",
     "PHONE": "Téléphone",
-    "ADDRESS": "Adresse",
-    "CITY": "Ville",
-    "STATE": "État",
-    "ZIP": "Code postal",
-    "COUNTRY": "Pays"
+    "LIST_TITLE": "Liste des étudiants",
+    "SUBMIT": "Soumettre",
+    "NAME_ERROR": "Nom invalide",
+    "AGE_ERROR": "Âge invalide",
+    "EMAIL_ERROR": "Email invalide",
+    "PHONE_ERROR": "Téléphone invalide",
+    "COURSE": "Cours",
+    "COURSE_ERROR": "Cours invalide",
+    "SELECT_COURSE": "Sélectionner un cours"
+  },
+  "COURSE": {
+    "TITLE": "Ajouter un cours",
+    "NAME": "Nom du cours",
+    "DURATION": "Durée (en mois)",
+    "DURATION_UNIT": "Mois",
+    "SUBMIT": "Soumettre",
+    "LIST_TITLE": "Liste des cours",
+    "NAME_ERROR": "Le nom du cours est requis.",
+    "DURATION_ERROR": "Veuillez entrer une durée valide."
   }
 }

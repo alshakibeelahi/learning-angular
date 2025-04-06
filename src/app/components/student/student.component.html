@@ -2,11 +2,23 @@
   <h2>{{ 'STUDENT.TITLE' | translate }}</h2>
 
   <form [formGroup]="studentForm" (ngSubmit)="addStudent()">
-    <div class="form-group" *ngFor="let field of ['name', 'age', 'email', 'phone', 'address', 'city', 'state', 'zip', 'country']">
+    <div class="form-group" *ngFor="let field of ['name', 'age', 'email', 'phone']">
       <label [for]="field">{{ ('STUDENT.' + field.toUpperCase()) | translate }}</label>
       <input [type]="field === 'age' ? 'number' : 'text'" [id]="field" formControlName="{{ field }}">
       <span class="error" *ngIf="studentForm.get(field)?.invalid && studentForm.get(field)?.touched">
         {{ ('STUDENT.' + field.toUpperCase() + '_ERROR') | translate }}
+      </span>
+    </div>
+
+    <!-- Course Dropdown -->
+    <div class="form-group">
+      <label for="course">{{ 'STUDENT.COURSE' | translate }}</label>
+      <select id="course" formControlName="course">
+        <option value="" disabled>{{ 'STUDENT.SELECT_COURSE' | translate }}</option>
+        <option *ngFor="let course of courses()" [value]="course.name">{{ course.name }}</option>
+      </select>
+      <span class="error" *ngIf="studentForm.get('course')?.invalid && studentForm.get('course')?.touched">
+        {{ 'STUDENT.COURSE_ERROR' | translate }}
       </span>
     </div>
 
@@ -16,7 +28,8 @@
   <h3>{{ 'STUDENT.LIST_TITLE' | translate }}</h3>
   <ul>
     <li *ngFor="let student of students()">
-      <strong>{{ student.name }}</strong> ({{ student.age }} years old) - {{ student.email }}
+      <strong>{{ student.name }}</strong> ({{ student.age }} years old) - {{ student.email }} - 
+      {{ student.course || 'No course selected' }}
     </li>
   </ul>
 </div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>{{ 'COURSE.TITLE' | translate }}</h2>
+
+  <form [formGroup]="courseForm" (ngSubmit)="addCourse()">
+    <div class="form-group">
+      <label for="name">{{ 'COURSE.NAME' | translate }}</label>
+      <input id="name" formControlName="name" />
+      <span *ngIf="courseForm.get('name')?.invalid && courseForm.get('name')?.touched" class="error">
+        {{ 'COURSE.NAME_ERROR' | translate }}
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="duration">{{ 'COURSE.DURATION' | translate }}</label>
+      <input id="duration" type="number" formControlName="duration" />
+      <span *ngIf="courseForm.get('duration')?.invalid && courseForm.get('duration')?.touched" class="error">
+        {{ 'COURSE.DURATION_ERROR' | translate }}
+      </span>
+    </div>
+
+    <button type="submit" [disabled]="courseForm.invalid">{{ 'COURSE.SUBMIT' | translate }}</button>
+  </form>
+
+  <h3>{{ 'COURSE.LIST_TITLE' | translate }}</h3>
+  <ul>
+    <li *ngFor="let course of courses()">
+      <strong>{{ course.name }}</strong> - {{ course.duration }} {{ 'COURSE.DURATION_UNIT' | translate }}
+    </li>
+  </ul>
+</div>
