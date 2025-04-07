@@ -1,0 +1,35 @@
+{
+  "HOME": {
+    "WELCOME": "مرحبًا بكم في موقعنا الإلكتروني",
+    "CLICK_HERE": "انقر هنا لمعرفة المزيد!",
+    "SELECT_LANGUAGE": "اختر اللغة",
+    "STUDENT": "طالب",
+    "UNIVERSITY": "دورة"
+  },
+  "STUDENT": {
+    "TITLE": "طالب",
+    "NAME": "الاسم",
+    "AGE": "العمر",
+    "EMAIL": "البريد الإلكتروني",
+    "PHONE": "الهاتف",
+    "LIST_TITLE": "قائمة الطلاب",
+    "SUBMIT": "إرسال",
+    "NAME_ERROR": "اسم غير صالح",
+    "AGE_ERROR": "عمر غير صالح",
+    "EMAIL_ERROR": "بريد إلكتروني غير صالح",
+    "PHONE_ERROR": "هاتف غير صالح",
+    "COURSE": "دورة",
+    "COURSE_ERROR": "دورة غير صالحة",
+    "SELECT_COURSE": "اختر دورة"
+  },
+  "COURSE": {
+    "TITLE": "إضافة دورة",
+    "NAME": "اسم الدورة",
+    "DURATION": "المدة (بالأشهر)",
+    "DURATION_UNIT": "شهور",
+    "SUBMIT": "إرسال",
+    "LIST_TITLE": "قائمة الدورات",
+    "NAME_ERROR": "اسم الدورة مطلوب.",
+    "DURATION_ERROR": "يرجى إدخال مدة صالحة."
+  }
+}

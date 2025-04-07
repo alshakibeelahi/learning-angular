@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+.rtl h1, .rtl h2, .rtl h3, .rtl p {
+  text-align: right;
+}

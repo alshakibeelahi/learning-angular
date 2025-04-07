@@ -219,6 +219,62 @@ When the user clicks the buttons, the application language will change, and the 
 
 ---
 
-### **Conclusion**
+### **Step 7: Alignment change for specific language like Arabic**
 
-You have successfully set up `ngx-translate` in your Angular 19 application using standalone components and configured translation with a custom `app.config.ts` file. This setup allows you to load translation files dynamically, switch languages at runtime, and easily manage text localization for your Angular app.
+To handle alignment changes for specific languages like Arabic, update the `AppComponent` as follows:
+
+```typescript
+import { Renderer2 } from '@angular/core';
+
+constructor(private translate: TranslateService, private renderer: Renderer2) {
+  // Add supported languages
+  this.translate.addLangs(['en', 'de', 'ar']);
+  
+  // Set the default language
+  this.translate.setDefaultLang('en');
+  
+  // Use English as the current language
+  this.translate.use('en');
+}
+
+switchLanguage(language: string) {
+  this.translate.use(language);
+  this.setLanguageDirection(language);
+}
+
+private setLanguageDirection(lang: string) {
+  if (lang === 'ar') {
+    this.renderer.addClass(document.body, 'rtl');
+    this.renderer.removeClass(document.body, 'ltr');
+  } else {
+    this.renderer.removeClass(document.body, 'rtl');
+    this.renderer.addClass(document.body, 'ltr');
+  }
+}
+```
+
+Update your global styles to include direction-specific rules:
+
+```scss
+body.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+body.ltr {
+  direction: ltr;
+  text-align: left;
+}
+```
+
+In the template, add buttons to switch between languages:
+
+```html
+<button (click)="switchLanguage('en')">English</button>
+<button (click)="switchLanguage('de')">Deutsch</button>
+<button (click)="switchLanguage('ar')">العربية</button>
+```
+
+This ensures that when a user selects a language like Arabic, the text direction and alignment are updated dynamically.
+
+---
