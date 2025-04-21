@@ -20,7 +20,9 @@
     "PHONE_ERROR": "Invalid phone",
     "COURSE": "Course",
     "COURSE_ERROR": "Invalid course",
-    "SELECT_COURSE": "Select Course"
+    "SELECT_COURSE": "Select Course",
+    "DETAILS_TITLE": "Student Details",
+    "NO_SELECTED": "No student selected"
   },
   "COURSE": {
     "TITLE": "Add Course",

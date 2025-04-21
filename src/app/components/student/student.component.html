@@ -2,12 +2,31 @@
   <h2>{{ 'STUDENT.TITLE' | translate }}</h2>
 
   <form [formGroup]="studentForm" (ngSubmit)="addStudent()">
-    <div class="form-group" *ngFor="let field of ['name', 'age', 'email', 'phone']">
-      <label [for]="field">{{ ('STUDENT.' + field.toUpperCase()) | translate }}</label>
-      <input [type]="field === 'age' ? 'number' : 'text'" [id]="field" formControlName="{{ field }}">
-      <span class="error" *ngIf="studentForm.get(field)?.invalid && studentForm.get(field)?.touched">
-        {{ ('STUDENT.' + field.toUpperCase() + '_ERROR') | translate }}
-      </span>
+    <div class="form-row">
+      <div class="form-group" *ngFor="let field of ['name', 'age']; let i = index" [class.col-md-6]="i < 2">
+        <label [for]="field">{{ ('STUDENT.' + field.toUpperCase()) | translate }}</label>
+        <input [type]="field === 'age' ? 'number' : 'text'" [id]="field" formControlName="{{ field }}">
+        <span class="error" *ngIf="studentForm.get(field)?.invalid && studentForm.get(field)?.touched">
+          {{ ('STUDENT.' + field.toUpperCase() + '_ERROR') | translate }}
+        </span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="email">{{ 'STUDENT.EMAIL' | translate }}</label>
+        <input type="text" id="email" formControlName="email">
+        <span class="error" *ngIf="studentForm.get('email')?.invalid && studentForm.get('email')?.touched">
+          {{ 'STUDENT.EMAIL_ERROR' | translate }}
+        </span>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="phone">{{ 'STUDENT.PHONE' | translate }}</label>
+        <input type="text" id="phone" formControlName="phone">
+        <span class="error" *ngIf="studentForm.get('phone')?.invalid && studentForm.get('phone')?.touched">
+          {{ 'STUDENT.PHONE_ERROR' | translate }}
+        </span>
+      </div>
     </div>
 
     <!-- Course Dropdown -->
@@ -26,10 +45,28 @@
   </form>
 
   <h3>{{ 'STUDENT.LIST_TITLE' | translate }}</h3>
-  <ul>
-    <li *ngFor="let student of students()">
-      <strong>{{ student.name }}</strong> ({{ student.age }} years old) - {{ student.email }} - 
-      {{ student.course || 'No course selected' }}
-    </li>
-  </ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{{ 'STUDENT.NAME' | translate }}</th>
+        <th>{{ 'STUDENT.AGE' | translate }}</th>
+        <th>{{ 'STUDENT.EMAIL' | translate }}</th>
+        <th>{{ 'STUDENT.COURSE' | translate }}</th>
+        <th>{{ 'STUDENT.ACTIONS' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students()">
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.course || 'No course selected' }}</td>
+        <td>
+          <button [routerLink]="['/student', student.id]">
+            {{ 'STUDENT.VIEW' | translate }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
