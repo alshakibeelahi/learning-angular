@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { StudentComponent } from './components/student/student.component';
-import { CoursesComponent } from './components/courses/courses.component';
 
 export const routes: Routes = [
   {
@@ -10,14 +8,16 @@ export const routes: Routes = [
   },
   {
     path: "student",
-    component: StudentComponent,
+    loadChildren: () =>
+      import('./components/student/student.module').then((m) => m.StudentModule),
   },
   {
     path: "course",
-    component: CoursesComponent,
+    loadChildren: () =>
+      import('./components/courses/courses.module').then((m) => m.CoursesModule),
   },
   {
-    path:"**", // Wildcard route for a 404 page
+    path: "**",
     redirectTo: "/",
-  }
+  },
 ];

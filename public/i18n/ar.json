@@ -20,7 +20,9 @@
     "PHONE_ERROR": "هاتف غير صالح",
     "COURSE": "دورة",
     "COURSE_ERROR": "دورة غير صالحة",
-    "SELECT_COURSE": "اختر دورة"
+    "SELECT_COURSE": "اختر دورة",
+    "DETAILS_TITLE": "تفاصيل الطالب",
+    "NO_SELECTED": "لا يوجد طالب محدد"
   },
   "COURSE": {
     "TITLE": "إضافة دورة",

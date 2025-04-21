@@ -1,0 +1,10 @@
+<div class="student-details">
+  <h3>{{ 'STUDENT.DETAILS_TITLE' | translate }}</h3>
+  <div *ngIf="selectedStudent">
+    <p><strong>{{ 'STUDENT.NAME' | translate }}:</strong> {{ selectedStudent.name }}</p>
+    <p><strong>{{ 'STUDENT.AGE' | translate }}:</strong> {{ selectedStudent.age }}</p>
+    <p><strong>{{ 'STUDENT.EMAIL' | translate }}:</strong> {{ selectedStudent.email }}</p>
+    <p><strong>{{ 'STUDENT.COURSE' | translate }}:</strong> {{ selectedStudent.course }}</p>
+  </div>
+  <p *ngIf="!selectedStudent">{{ 'STUDENT.NO_SELECTED' | translate }}</p>
+</div>

@@ -7,11 +7,12 @@ import { StudentService } from '../../services/student.service';
 import { CourseService } from '../../services/course.service';  // Add course service
 import { Student } from '../../models/student.model';
 import { Course } from '../../models/course.model';  // Assuming you have a Course model
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-student',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, RouterModule],
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.scss'],
 })
@@ -29,11 +30,12 @@ export class StudentComponent {
     private courseService: CourseService // Inject the course service
   ) {
     this.studentForm = this.fb.group({
+      id: [0],
       name: ['', Validators.required],
-      age: ['', [Validators.required, Validators.min(1)]],
+      age: ['', [Validators.required, Validators.min(18), Validators.max(32)]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
-      course: ['', Validators.required],  // Add course field
+      course: ['', Validators.required]
     });
 
     // Load students and courses
@@ -54,9 +56,7 @@ export class StudentComponent {
       const newStudent = this.studentForm.value as Student;
       console.log(newStudent);  // Log the new student object
       this.studentService.addStudent(newStudent);
-
-      this.studentsSignal.set([...this.studentsSignal(), newStudent]);
-
+      this.studentsSignal.set(this.studentService.getStudents());
       this.studentForm.reset();
     }
   }
